@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DarkCore Admin</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<script>
+if(localStorage.getItem("darkcore_logged") !== "true"){
+    window.location.href = "login.html";
+}
+</script>
+
+<div class="admin-container">
+    <aside class="sidebar">
+        <div class="admin-brand"><img src="logo.png" alt="DarkCore"><span>Painel Admin</span></div>
+
+        <ul>
+            <li onclick="showTab('dashboard')">📊 Dashboard</li>
+            <li onclick="showTab('pacotes')">🚀 Otimização</li>
+            <li onclick="showTab('sites')">💻 Sites</li>
+            <li onclick="showTab('faq')">❓ FAQ</li>
+            <li onclick="showTab('config')">⚙️ Configurações</li>
+            <li onclick="logout()">🚪 Sair e voltar ao site</li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <section id="dashboard" class="tab active">
+            <div class="admin-header"><div><span class="admin-kicker">DARKCORE DEVELOPMENT</span><h1>Dashboard</h1></div><a class="site-link" href="index.html" target="_blank">Ver site</a></div>
+
+            <div class="cards">
+                <div class="card"><h3>Otimização</h3><span>3</span></div>
+                <div class="card"><h3>Sites</h3><span>3</span></div>
+                <div class="card"><h3>FAQ</h3><span>3</span></div>
+                <div class="card"><h3>Status</h3><span>Online</span></div>
+            </div>
+
+            <div class="admin-note">
+                Alterações salvas no painel aparecem no site neste mesmo navegador.
+            </div>
+        </section>
+
+        <section id="pacotes" class="tab">
+            <div class="admin-header"><div><span class="admin-kicker">OTIMIZAÇÃO</span><h1>Editar Pacotes</h1></div></div>
+
+            <div class="form-group">
+                <label>Preço Básico</label>
+                <input type="text" id="basicPrice" value="80">
+            </div>
+
+            <div class="form-group">
+                <label>Preço Performance</label>
+                <input type="text" id="performancePrice" value="120">
+            </div>
+
+            <div class="form-group">
+                <label>Preço Extremo</label>
+                <input type="text" id="extremePrice" value="180">
+            </div>
+
+            <button onclick="savePackages()">Salvar Pacotes</button>
+        </section>
+
+
+        <section id="sites" class="tab">
+            <div class="admin-header"><div><span class="admin-kicker">CRIAÇÃO DE SITES</span><h1>Editar Página de Sites</h1></div></div>
+
+            <div class="admin-note">
+                Os planos da página <b>sites.html</b> trabalham apenas com orçamento, sem preço visível.
+            </div>
+
+            <div class="form-group">
+                <label>Título Plano 1</label>
+                <input type="text" id="sitePlan1TitleInput" value="PROFISSIONAL">
+            </div>
+
+            <div class="form-group">
+                <label>Descrição Plano 1</label>
+                <textarea id="sitePlan1DescInput" rows="5">✔️ Landing page profissional
+✔️ Design responsivo
+✔️ Botão WhatsApp
+✔️ Estrutura para conversão</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Título Plano 2</label>
+                <input type="text" id="sitePlan2TitleInput" value="BUSINESS">
+            </div>
+
+            <div class="form-group">
+                <label>Descrição Plano 2</label>
+                <textarea id="sitePlan2DescInput" rows="5">✔️ Site completo
+✔️ Design premium
+✔️ SEO básico
+✔️ Seções personalizadas
+✔️ WhatsApp integrado</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Título Plano 3</label>
+                <input type="text" id="sitePlan3TitleInput" value="PREMIUM / SISTEMA">
+            </div>
+
+            <div class="form-group">
+                <label>Descrição Plano 3</label>
+                <textarea id="sitePlan3DescInput" rows="5">✔️ Painel administrativo
+✔️ Área interna
+✔️ Formulários
+✔️ Funcionalidades sob medida</textarea>
+            </div>
+
+            <button onclick="saveSitePlans()">Salvar Planos de Sites</button>
+        </section>
+
+        <section id="faq" class="tab">
+            <div class="admin-header"><div><span class="admin-kicker">CONTEÚDO</span><h1>FAQ</h1></div></div>
+
+            <textarea id="faqText" rows="10">A otimização é segura?
+Sim.
+
+Preciso formatar?
+Sim, para conseguir extrair o máximo desempenho do computador.
+
+Quanto tempo leva?
+1 a 2 horas.</textarea>
+
+            <button onclick="saveFaq()">Salvar FAQ</button>
+        </section>
+
+        <section id="config" class="tab">
+            <div class="admin-header"><div><span class="admin-kicker">GERAL</span><h1>Configurações</h1></div></div>
+
+            <div class="form-group">
+                <label>WhatsApp</label>
+                <input type="text" id="whatsapp" value="5547992235543">
+            </div>
+
+            <div class="form-group">
+                <label>Instagram</label>
+                <input type="text" id="instagram" value="darkcore_pcs">
+            </div>
+
+            <button onclick="saveConfig()">Salvar Configurações</button>
+
+            <div class="backup-actions">
+                <button onclick="exportBackup()">Exportar Backup</button>
+
+                <label class="import-label">
+                    Importar Backup
+                    <input type="file" accept=".json" onchange="importBackup(event)">
+                </label>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
